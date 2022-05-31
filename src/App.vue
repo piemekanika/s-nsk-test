@@ -1,32 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="bg-light" style="min-height: 100vh">
+        <header class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid" style="width: 992px;">
+                <router-link to="/">
+                    <div class="navbar-brand">
+                        Azon
+                    </div>
+                </router-link>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <router-link to="/cart">
+                            <a class="nav-link">
+                                <i class="bi bi-cart"></i>
+
+                                Корзина
+
+                                <span v-if="cartItemsCount">
+                                    ({{ cartItemsCount }} шт.)
+                                </span>
+                            </a>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <main
+            class="px-3 py-4 shadow-sm rounded border my-4 mx-auto bg-white"
+            style="width: 992px;"
+        >
+            <router-view></router-view>
+        </main>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import {mapGetters} from 'vuex';
 
-#nav {
-  padding: 30px;
+export default {
+    computed: {
+        ...mapGetters('cart', {
+            cartItemsCount: 'itemsCount',
+        }),
+    },
+};
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+<style scoped>
+a {
+    text-decoration: none;
 }
 </style>
