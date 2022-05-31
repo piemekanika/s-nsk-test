@@ -25,7 +25,7 @@ export const getItemById: GetItemById = (items, id) => {
     return item;
 };
 
-const cart: Module<CartStore, CartStore> = {
+const cart: Module<CartStore, any> = {
 
     namespaced: true,
 

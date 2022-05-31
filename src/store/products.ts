@@ -19,7 +19,7 @@ interface ProductsStore {
     groups: Group[];
 }
 
-const products: Module<ProductsStore, ProductsStore> = {
+const products: Module<ProductsStore, any> = {
 
     namespaced: true,
 
